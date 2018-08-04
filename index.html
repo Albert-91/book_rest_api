@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <form id="form">
+        <label>
+            Tytuł:
+            <input type="text" name="title">
+        </label>
+        <br>
+        <label>
+            Autor:
+            <input type="text" name="author">
+        </label>
+        <br>
+        <label>
+            Publisher:
+            <input type="text" name="publisher">
+        </label>
+        <br>
+        <label>
+            ISBN:
+            <input type="text" name="isbn">
+        </label>
+        <br>
+        <label>
+            Genre:
+            <select name="genre">
+                <option value=1>Romans</option>
+                <option value=2>Obyczajowa</option>
+                <option value=3>Sci-fi i fantasy</option>
+                <option value=4>Literatura faktu</option>
+                <option value=5>Popularnonaukowa</option>
+                <option value=6>Poradnik</option>
+                <option value=7>Kryminał, sensacja</option>
+            </select>
+        </label>
+        <input id="submit" type="submit" value="Add book">
+    </form>
+    <ul id="titles">Tytuły:</ul>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
