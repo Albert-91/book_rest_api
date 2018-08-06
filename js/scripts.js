@@ -6,7 +6,7 @@ $(function(){
     .done(function(response){
         var $titles_list = $('#titles');
         for(var i = 0; i < response.length; i++){
-            var $title = $('<li>' + response[i].title + '</li>')
+            var $title = $('<li>' + response[i].title + '	<button id="' + response[i].id + '">Delete</button></li>')
             var author = "<li>Author: " + response[i].author + "</li>"
             var isbn = "<li>ISBN: " + response[i].isbn + "</li>"
             var publisher = "<li>Publisher: " + response[i].publisher + "</li>"
