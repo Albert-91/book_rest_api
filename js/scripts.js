@@ -6,7 +6,11 @@ $(function(){
     .done(function(response){
         var $titles_list = $('#titles');
         for(var i = 0; i < response.length; i++){
-            var $title = $('<li>' + response[i].title + '</li><button class="delete">Delete</button>')
+            var $title = $('<li data-id=' 
+							+ response[i].id 
+							+ '>' 
+							+ response[i].title 
+							+ '</li><button class="delete">Delete</button>')
             var author = "<li>Author: " + response[i].author + "</li>"
             var isbn = "<li>ISBN: " + response[i].isbn + "</li>"
             var publisher = "<li>Publisher: " + response[i].publisher + "</li>"
@@ -30,9 +34,10 @@ $(function(){
         })
 		var $delete = $('#titles').find('.delete')
 		$delete.on('click', function(event){
-			console.log($(this).id)
+			var $li = $(this).prev()
+			var $id = $li.data("id")
 			$.ajax({
-				url: "http://127.0.0.1:8000/book/" + $(this).response.id,
+				url: "http://127.0.0.1:8000/book/" + $id,
 				method: "DELETE",
 				data: $(this).prev(),
 				dataType: "json"
