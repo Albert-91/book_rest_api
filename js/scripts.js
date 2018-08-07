@@ -6,7 +6,7 @@ $(function(){
     .done(function(response){
         var $titles_list = $('#titles');
         for(var i = 0; i < response.length; i++){
-            var $title = $('<li>' + response[i].title + '	</li><button class="delete">Delete</button>')
+            var $title = $('<li>' + response[i].title + '</li><button class="delete">Delete</button>')
             var author = "<li>Author: " + response[i].author + "</li>"
             var isbn = "<li>ISBN: " + response[i].isbn + "</li>"
             var publisher = "<li>Publisher: " + response[i].publisher + "</li>"
@@ -24,11 +24,24 @@ $(function(){
             $titles_list.append($title);
             $titles_list.append($new_div);
         }
-        var $titles = $titles_list.first()
-        $titles.on('click', function(){ 
-            $(this).next('div').toggle('display') 
+        var $titles = $titles_list.children('li')
+        $titles.on('click', function(event){
+            $(this).next().next().toggle('display')
         })
-    });
+		var $delete = $('#titles').find('.delete')
+		$delete.on('click', function(event){
+			console.log($(this).id)
+			$.ajax({
+				url: "http://127.0.0.1:8000/book/" + $(this).response.id,
+				method: "DELETE",
+				data: $(this).prev(),
+				dataType: "json"
+			})
+			.done(function(response){
+				location.reload()
+			})
+		})
+	});
     var $form = $('#form')
     var $button = $('#submit')
     $button.on('click', function(event){
@@ -49,19 +62,5 @@ $(function(){
         .done(function(response){
             location.reload()
         })
-
     })
-    var $delete = $('.delete')
-	$delete.on('click', function(event){
-		event.preventDefault()
-		$.ajax({
-            url: "http://127.0.0.1:8000/book/",
-            method: "DELETE",
-            data: $(this).prev(),
-            dataType: "json"
-        })
-        .done(function(response){
-            location.reload()
-        })
-	})
 });
